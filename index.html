@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sailing Smoothly</title>
     <style>
-        /* Reset and Base Styles */
+        /* Reset und Basis-Styles */
         * {
             margin: 0;
             padding: 0;
@@ -13,14 +13,14 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Arial Black', sans-serif;
             overflow: hidden;
             background: linear-gradient(to bottom, #94b9ff 0%, #e0e9ff 100%);
             height: 100vh;
             width: 100vw;
         }
 
-        /* Slogan Styling */
+        /* Großer Slogan */
         .slogan {
             position: absolute;
             top: 15%;
@@ -36,7 +36,7 @@
             animation: floatText 4s ease-in-out infinite;
         }
 
-        /* Container for the Sea */
+        /* Ozean-Container */
         .ocean {
             position: absolute;
             bottom: 0;
@@ -46,57 +46,58 @@
             overflow: hidden;
         }
 
-        /* SVG Wave Base Styling */
+        /* Animierte CSS-Wellen (Verwendung von CSS-Gradients für maximale Kompatibilität) */
         .wave {
             position: absolute;
-            bottom: 0;
+            left: 0;
             width: 200%;
             height: 100%;
             background-repeat: repeat-x;
             transform: translate3d(0, 0, 0);
         }
 
-        /* Wave 1 (Back Layer) */
+        /* Hintere Welle (Dunkelblau) */
         .wave1 {
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://w3.org" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,32L120,42.7C240,53,480,75,720,74.7C960,75,1200,53,1320,42.7L1440,32L1440,120L1320,120C1200,120,960,120,720,120C480,120,240,120,120,120L0,120Z" fill="%23457b9d"/></svg>');
-            background-size: 50% 120px;
-            animation: waveAnim 12s linear infinite;
+            background-image: radial-gradient(circle at 50% -20px, transparent 40px, #457b9d 41px);
+            background-size: 80px 100%;
+            top: 0;
+            animation: moveWaves 12s linear infinite;
             z-index: 1;
-            opacity: 0.5;
-            bottom: 40px;
+            opacity: 0.7;
         }
 
-        /* Wave 2 (Middle Layer) */
+        /* Mittlere Welle (Hellblau) */
         .wave2 {
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://w3.org" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,64L120,58.7C240,53,480,43,720,48C960,53,1200,75,1320,85.3L1440,96L1440,120L1320,120C1200,120,960,120,720,120C480,120,240,120,120,120L0,120Z" fill="%23a8dadc"/></svg>');
-            background-size: 50% 140px;
-            animation: waveAnimReverse 8s linear infinite;
+            background-image: radial-gradient(circle at 50% -15px, transparent 35px, #a8dadc 36px);
+            background-size: 70px 100%;
+            top: 25px;
+            animation: moveWavesReverse 8s linear infinite;
             z-index: 3;
             opacity: 0.8;
-            bottom: 20px;
         }
 
-        /* Wave 3 (Front Layer) */
+        /* Vordere Welle (Hauptblau) */
         .wave3 {
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://w3.org" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,192L120,186.7C240,181,480,171,720,149.3C960,128,1200,96,1320,80L1440,64L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z" fill="%231d3557"/></svg>');
-            background-size: 50% 160px;
-            animation: waveAnim 6s linear infinite;
+            background-image: radial-gradient(circle at 50% -25px, transparent 45px, #1d3557 46px);
+            background-size: 90px 100%;
+            top: 50px;
+            animation: moveWaves 6s linear infinite;
             z-index: 5;
-            bottom: 0;
         }
 
-        /* Container Ship Styling */
+        /* Statische Schiff-Positionen mit Bobbing-Effekt (Wippen) */
+        
+        /* Großes Containerschiff (Links im Hintergrund) */
         .container-ship {
             position: absolute;
-            bottom: 120px;
-            left: -300px;
+            bottom: 32vh;
+            left: 15%;
             width: 250px;
             height: 90px;
             z-index: 2;
-            animation: cruiseShip 35s linear infinite, bobbing Ship 4s ease-in-out infinite;
+            animation: bobbingShip 4s ease-in-out infinite;
         }
 
-        /* CSS-drawn Container Ship Hull & Cargo */
         .hull {
             position: absolute;
             bottom: 0;
@@ -137,18 +138,17 @@
             border-radius: 2px 2px 0 0;
         }
 
-        /* Pink Sailing Boat Styling */
+        /* Kleines rosafarbenes Segelboot (Rechts im Vordergrund) */
         .pink-boat {
             position: absolute;
-            bottom: 70px;
-            right: -150px;
+            bottom: 25vh;
+            right: 20%;
             width: 90px;
             height: 90px;
             z-index: 4;
-            animation: sailBoat 20s linear infinite 5s, bobbingBoat 3s ease-in-out infinite;
+            animation: bobbingBoat 3s ease-in-out infinite;
         }
 
-        /* CSS-drawn Sailboat */
         .boat-hull {
             position: absolute;
             bottom: 10px;
@@ -164,7 +164,7 @@
             left: 35px;
             width: 4px;
             height: 55px;
-            background: #70e000;
+            background: #b5e2fa;
         }
         .sail {
             position: absolute;
@@ -177,13 +177,13 @@
             border-bottom: 22px solid transparent;
         }
 
-        /* Animations */
-        @keyframes waveAnim {
+        /* Animationen */
+        @keyframes moveWaves {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
         }
 
-        @keyframes waveAnimReverse {
+        @keyframes moveWavesReverse {
             0% { transform: translateX(-50%); }
             100% { transform: translateX(0); }
         }
@@ -193,55 +193,43 @@
             50% { transform: translateY(-10px); }
         }
 
-        @keyframes cruiseShip {
-            0% { left: -300px; }
-            100% { left: 100vw; }
-        }
-
-        @keyframes sailBoat {
-            0% { right: -150px; }
-            100% { right: 100vw; }
-        }
-
         @keyframes bobbingShip {
             0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-5px) rotate(1deg); }
+            50% { transform: translateY(-6px) rotate(1deg); }
         }
 
         @keyframes bobbingBoat {
             0%, 100% { transform: translateY(0) rotate(-2deg); }
-            50% { transform: translateY(-8px) rotate(4deg); }
+            50% { transform: translateY(-10px) rotate(4deg); }
         }
     </style>
 </head>
 <body>
 
-    <!-- Main Big Slogan -->
     <h1 class="slogan">Sailing Smoothly</h1>
 
-    <!-- Sea Environment -->
     <div class="ocean">
-        <!-- Deep Wave Background Layer -->
+        <!-- Welle hinten -->
         <div class="wave wave1"></div>
 
-        <!-- Container Ship moving Left to Right behind mid-waves -->
+        <!-- Containerschiff (liegt fest verankert im Hintergrund auf Welle 1) -->
         <div class="container-ship">
             <div class="bridge"></div>
             <div class="cargo"></div>
             <div class="hull"></div>
         </div>
 
-        <!-- Mid Wave Layer -->
+        <!-- Welle mitte -->
         <div class="wave wave2"></div>
 
-        <!-- Pink Sail Boat moving Right to Left closer to the front -->
+        <!-- Rosa Segelboot (liegt fest verankert im Vordergrund auf Welle 2) -->
         <div class="pink-boat">
             <div class="sail"></div>
             <div class="mast"></div>
             <div class="boat-hull"></div>
         </div>
 
-        <!-- Foreground Wave Layer -->
+        <!-- Welle vorne -->
         <div class="wave wave3"></div>
     </div>
 
